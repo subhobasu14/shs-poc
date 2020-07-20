@@ -5,18 +5,16 @@ import { Container, Row, Col } from "react-bootstrap";
 function ApplianceList(props) {
   // Access post fields map
   const appliance = props.apps.fields;
+
   return (
-    <section className="fj-hero">
-      <h3>{appliance.list.length}</h3>
+    <section className="fj-hero" style={{ backgroundColor: "antiquewhite" }}>
       <div className="d-flex flex-row">
-        {appliance.list.map((app, index) => (
-          <div className="p-2" key={index}>
-            <img
-              src={app.fields.file.url}
-              className="img-responsive img-fit-cover"
-              style={{ height: 60 }}
-            />
-          </div>
+        {appliance.gadgets.map((app) => (
+          <img
+            src={app.fields.logo.fields.file.url}
+            className="img-responsive img-fit-cover"
+            style={{ height: 60 }}
+          />
         ))}
       </div>
     </section>

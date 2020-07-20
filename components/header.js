@@ -7,7 +7,7 @@ function Header(props) {
   const header = props.header.fields;
 
   return (
-    <section className="fj-hero">
+    <section className="fj-hero" style={{ backgroundColor: "lightgrey" }}>
       <div className="d-flex flex-row">
         <div className="p-2">
           <img

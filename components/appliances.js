@@ -7,7 +7,7 @@ function Appliances(props) {
   const appliance = props.appliance.fields;
 
   return (
-    <section className="fj-hero">
+    <section className="fj-hero" style={{ backgroundColor: "coral" }}>
       <div className="d-flex flex-row">
         <div className="p-2">
           <img

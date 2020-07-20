@@ -33,10 +33,10 @@ async function fetchAppliances() {
   });
 }
 
-async function fetchApplianceList(slug) {
+async function fetchAppliancesByBrand(slug) {
   const entries = await client.getEntries({
-    content_type: "applianceList",
-    "fields.title": slug,
+    content_type: "brands",
+    "fields.name": slug,
   });
 
   return entries;
@@ -47,7 +47,7 @@ function HomePage(props) {
   return (
     <React.Fragment>
       <Head>
-        <title>Welcome to NextJS + Contentful by ScreamZ</title>
+        <title>Sears Home Service</title>
         <link
           rel="stylesheet"
           href="https://unpkg.com/spectre.css/dist/spectre.min.css"
@@ -77,6 +77,7 @@ function HomePage(props) {
             ))}
         </div>
       </div>
+      {/*
       <div className="container col-lg mt-2">
         <div className="columns">
           {props.allAppliances &&
@@ -85,6 +86,7 @@ function HomePage(props) {
             ))}
         </div>
       </div>
+            */}
       <div className="container col-lg mt-2">
         <div className="columns">
           {props.appList &&
@@ -101,23 +103,17 @@ function HomePage(props) {
 // Or will run each time a new request is made to the browser in SSR.
 // It's used to compute initial props for the component and pre-render.
 HomePage.getInitialProps = async () => {
-  // Get every entries in contentful from type Article, sorted by date.
-  // article is the ID of the content model we created on the dashboard.
-  // const entries = await client.getEntries({
-  //   content_type: "tempBanner",
-  //   // order: "-fields.date"
-  // });
   const banners = await fetchBanner();
   const headers = await fetchHeader();
-  const apppliances = await fetchAppliances();
-  const appplianceList = await fetchApplianceList("list1");
+  // const apppliances = await fetchAppliances();
+  const applianceList = await fetchAppliancesByBrand("ge");
 
   // Inject in props of our screen component
   return {
     allBanners: banners.items,
     allHeaders: headers.items,
-    allAppliances: apppliances.items,
-    appList: appplianceList.items,
+    // allAppliances: apppliances.items,
+    appList: applianceList.items,
   };
 };
 
